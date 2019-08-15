@@ -2,7 +2,7 @@ $(function() {
 	var $editor = $('.image-editor');
 	$editor.cropit();
 
-	var resizer = window.pica({ features: ['all'] });
+	var pica = window.pica({ features: ['all'] });
 
 	$('.export').click(function() {
 		// Get cropping information
@@ -23,18 +23,20 @@ $(function() {
 		
 		// Use pica to resize image and paint on destination canvas
 		var zoomedCanvas = document.createElement('canvas');
-		zoomedCanvas.width = previewSize.width * exportZoom;
-		zoomedCanvas.height = previewSize.height * exportZoom;
+		zoomedCanvas.width = previewSize.width * exportZoom * 2;
+		zoomedCanvas.height = previewSize.height * exportZoom * 2;
 		
-		resizer.resize(originalCanvas, zoomedCanvas, {
-			
-		}).then(function(err) {
-			//if (err) { return console.log(err); }
+		pica.resize(originalCanvas, zoomedCanvas)
+			.then(function(result){
+				return pica.toBlob(result, 'image/jpeg', 0.8);
+			})
+			.then(function(blob) {
+				
+				window.open(window.URL.createObjectURL(blob));
+				$('.image-editor').after('<img src="' + window.URL.createObjectURL(blob) + '" width="200px" height="300" />');
+				console.log(window.URL.createObjectURL(blob));
 
-			var picaImageData = zoomedCanvas.toDataURL();
-			var $picaImg = $('<img src="' + picaImageData + '" />');
-			
-			$('.image-editor').after($picaImg);
-		});
+	
+			});
 	});
 });

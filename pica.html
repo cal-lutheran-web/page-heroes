@@ -3,6 +3,7 @@
     <title>cropit</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <link rel="stylesheet" href="https://www.callutheran.edu/_resources/css/styles.css">
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="node_modules/cropit/dist/jquery.cropit.js"></script>
@@ -37,14 +38,23 @@
     </style>
   </head>
   <body>
-    <div class="image-editor">
-      <input type="file" class="cropit-image-input">
-      <div class="cropit-preview"></div>
-      <div class="image-size-label">
-        Resize image
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <div class="image-editor">
+            <input type="file" class="cropit-image-input">
+            <div class="cropit-preview"></div>
+            <div class="image-size-label">
+              Resize image
+            </div>
+            <input type="range" class="cropit-image-zoom-input">
+            <button class="export">Export</button>
+          </div>
+
+        </div>
       </div>
-      <input type="range" class="cropit-image-zoom-input">
-      <button class="export">Export</button>
     </div>
 
     <script src="pica-resize.js"></script>
