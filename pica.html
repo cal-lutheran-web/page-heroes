@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>cropit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="node_modules/cropit/dist/jquery.cropit.js"></script>
+    <script src="node_modules/pica/dist/pica.js"></script>
+
+    <style>
+      .cropit-preview {
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-top: 7px;
+        width: 200px;
+        height: 300px;
+      }
+      .cropit-preview-image-container {
+        cursor: move;
+      }
+      .cropit-preview-background {
+        opacity: .1;
+        cursor: auto;
+      }
+      .image-size-label {
+        margin-top: 10px;
+      }
+      input {
+        display: block;
+      }
+      .export {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-editor">
+      <input type="file" class="cropit-image-input">
+      <div class="cropit-preview"></div>
+      <div class="image-size-label">
+        Resize image
+      </div>
+      <input type="range" class="cropit-image-zoom-input">
+      <button class="export">Export</button>
+    </div>
+
+    <script src="pica-resize.js"></script>
+  </body>
+</html>
