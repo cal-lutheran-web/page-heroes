@@ -1,6 +1,8 @@
 $(function() {
 	var $editor = $('.image-editor');
-	$editor.cropit();
+	$editor.cropit({
+		imageBackground: true
+	});
 
 	var pica = window.pica({ features: ['all'] });
 
