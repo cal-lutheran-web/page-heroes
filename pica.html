@@ -10,9 +10,14 @@
     <script src="node_modules/pica/dist/pica.js"></script>
 
     <style>
+
+      .main-content {
+        margin-top: 3rem;
+      }
+
       .cropit-preview {
         background-color: #f8f8f8;
-        margin-top: 7px;
+        margin: auto;
         width: 200px;
         height: 300px;
       }
@@ -37,23 +42,61 @@
   </head>
   <body>
 
-    <div class="container">
+    <main class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 main-content">
+
+          <h1 class="section-title">Image Resizer</h1>
 
           <div class="image-editor">
-            <input type="file" class="cropit-image-input">
-            <div class="cropit-preview"></div>
-            <div class="image-size-label">
-              Resize image
+            <div class="row">
+              <div class="col-sm-6">
+                  <label for="upload-select">Select a file to upload</label>
+                  <input type="file" class="cropit-image-input" id="upload-select">
+                  <br><br>
+
+                  <label for="scale" class="image-size-label">Zoom</label>
+                  <input type="range" class="cropit-image-zoom-input" id="scale">
+
+                  <br><br>
+                  <button class="btn export">Preview</button>
+                  <a href="" class="btn green hide" id="image-download">Download Image</a> 
+              </div>
+              <div class="col-sm-6 centered">
+                  <div class="cropit-preview"></div>
+
+              </div>
+
+
             </div>
-            <input type="range" class="cropit-image-zoom-input">
-            <button class="export">Export</button>
+            
+            
+            
+            
+
+            
+            
+            
+
+            <hr>
+            <div class="short-item">
+              <div class="short-item-aside" id="profile-preview">
+
+              </div>
+              <div class="short-item-content">
+                <header>Department Staff</header>
+                <p><i class="icon-user"></i> <em>Job Title</em><br>
+                <i class="icon-mail"></i> <a href="">email@callutheran.edu</a><br>
+                <i class="icon-phone"></i> 555-1234</p>
+              </div>
+            </div>
+
+
           </div>
 
         </div>
       </div>
-    </div>
+    </main>
 
     <script src="pica-resize.js"></script>
   </body>
