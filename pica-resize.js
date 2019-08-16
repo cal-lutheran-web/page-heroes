@@ -4,7 +4,14 @@ $(function() {
 
 	var pica = window.pica({ features: ['all'] });
 
+	function getFileName(){
+		var fileUpload = $('.cropit-image-input').val();
+		var fileName = fileUpload.split('\\').pop().replace('.JPG','');
+		return fileName;
+	}
+
 	$('.export').click(function() {
+
 		// Get cropping information
 		var imgSrc = $editor.cropit('imageSrc');
 		var offset = $editor.cropit('offset');
@@ -32,9 +39,9 @@ $(function() {
 			})
 			.then(function(blob) {
 				
-				window.open(window.URL.createObjectURL(blob));
-				$('.image-editor').after('<img src="' + window.URL.createObjectURL(blob) + '" width="200px" height="300" />');
-				console.log(window.URL.createObjectURL(blob));
+				var image_data = window.URL.createObjectURL(blob);
+				$('.image-editor').after('<img src="' + image_data + '" width="200px" height="300" />');
+				$('.image-editor').after('<a download="'+ getFileName() +'-resized.jpg" href="'+ image_data +'">Download</a>');
 
 	
 			});
