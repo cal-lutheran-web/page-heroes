@@ -24,10 +24,6 @@
       .cropit-preview-image-container {
         cursor: move;
       }
-      .cropit-preview-background {
-        opacity: .1;
-        cursor: auto;
-      }
       .image-size-label {
         margin-top: 10px;
       }
@@ -38,6 +34,34 @@
         margin-top: 10px;
         margin-bottom: 10px;
       }
+
+
+      .loading-spinner {
+        position: absolute;
+        top: calc(50% - 1rem);
+        left: calc(50% - 1rem);
+        width: 2rem;
+        height: 2rem;
+        font-size: 2rem;
+        z-index: 1000;
+
+        animation: 2s linear spin infinite; 
+      }
+
+      .loading-spinner::before {
+        margin: 0;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+
+      .short-item-aside {
+        position: relative;
+      }
+
     </style>
   </head>
   <body>
@@ -63,7 +87,8 @@
                   <a href="" class="btn green hide" id="image-download">Download Image</a> 
               </div>
               <div class="col-sm-6 centered">
-                  <div class="cropit-preview"></div>
+
+                  <div class="cropit-preview"><i id="preview-spinner" class="icon-loading loading-spinner hide"></i></div>
 
               </div>
 
@@ -81,7 +106,7 @@
             <hr>
             <div class="short-item">
               <div class="short-item-aside" id="profile-preview">
-
+                  <i id="placeholder-spinner" class="icon-loading loading-spinner hide"></i>
               </div>
               <div class="short-item-content">
                 <header>Department Staff</header>

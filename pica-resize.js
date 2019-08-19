@@ -1,7 +1,12 @@
 $(function() {
 	var $editor = $('.image-editor');
 	$editor.cropit({
-		imageBackground: true
+		'onFileChange': function(){ 
+			$('#preview-spinner').removeClass('hide');
+		},
+		'onImageLoaded': function(){
+			$('#preview-spinner').addClass('hide');
+		}
 	});
 
 	var pica = window.pica({ features: ['all'] });
@@ -13,6 +18,8 @@ $(function() {
 	}
 
 	$('.export').click(function() {
+
+		$('#placeholder-spinner').removeClass('hide');
 
 		// Get cropping information
 		var imgSrc = $editor.cropit('imageSrc');
@@ -41,6 +48,8 @@ $(function() {
 			})
 			.then(function(blob) {
 				
+				$('#placeholder-spinner').addClass('hide');
+
 				var image_data = window.URL.createObjectURL(blob);
 				$('#profile-preview').html('<img src="' + image_data + '" />');
 
