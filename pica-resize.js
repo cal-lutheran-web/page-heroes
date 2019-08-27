@@ -13,7 +13,12 @@ $(function() {
 
 	function getFileName(){
 		var fileUpload = $('.cropit-image-input').val();
-		var fileName = fileUpload.split('\\').pop().replace('.JPG','');
+		var fileName = fileUpload.split('\\').pop();
+			fileName = fileName.replace('.JPG','');
+			fileName = fileName.replace('.JPEG','');
+			fileName = fileName.replace('.jpg','');
+			fileName = fileName.replace('.jpeg','');
+			
 		return fileName;
 	}
 
