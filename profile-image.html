@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <title>cropit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="https://www.callutheran.edu/_resources/css/styles.css">
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="node_modules/cropit/dist/jquery.cropit.js"></script>
+    <script src="node_modules/pica/dist/pica.js"></script>
+
+    <style>
+
+      .main-content {
+        margin-top: 3rem;
+      }
+
+      .cropit-preview {
+        background-color: #f8f8f8;
+        margin: auto;
+        width: 200px;
+        height: 300px;
+      }
+      .cropit-preview-image-container {
+        cursor: move;
+      }
+      .image-size-label {
+        margin-top: 10px;
+      }
+      input {
+        display: block;
+      }
+      .export {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+
+      .loading-spinner {
+        position: absolute;
+        top: calc(50% - 1rem);
+        left: calc(50% - 1rem);
+        width: 2rem;
+        height: 2rem;
+        font-size: 2rem;
+        z-index: 1000;
+
+        animation: 2s linear spin infinite; 
+      }
+
+      .loading-spinner::before {
+        margin: 0;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+
+      .short-item-aside {
+        position: relative;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <main class="container">
+      <div class="row">
+        <div class="col-sm-12 main-content">
+
+          <h1 class="section-title">Image Resizer</h1>
+
+          <div class="image-editor">
+            <div class="row">
+              <div class="col-sm-6">
+                  <label for="upload-select">Select a file to upload</label>
+                  <input type="file" class="cropit-image-input" id="upload-select">
+                  <br><br>
+
+                  <label for="scale" class="image-size-label">Zoom</label>
+                  <input type="range" class="cropit-image-zoom-input" id="scale">
+
+                  <br><br>
+                  <button class="btn export">Preview</button>
+                  <a href="" class="btn green hide" id="image-download">Download Image</a> 
+              </div>
+              <div class="col-sm-6 centered">
+
+                  <div class="cropit-preview"><i id="preview-spinner" class="icon-loading loading-spinner hide"></i></div>
+
+              </div>
+
+
+            </div>
+            
+            
+            
+            
+
+            
+            
+            
+
+            <hr>
+            <div class="short-item">
+              <div class="short-item-aside" id="profile-preview">
+                  <i id="placeholder-spinner" class="icon-loading loading-spinner hide"></i>
+              </div>
+              <div class="short-item-content">
+                <header>Department Staff</header>
+                <p><i class="icon-user"></i> <em>Job Title</em><br>
+                <i class="icon-mail"></i> <a href="">email@callutheran.edu</a><br>
+                <i class="icon-phone"></i> 555-1234</p>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <script src="pica-resize.js"></script>
+  </body>
+</html>
