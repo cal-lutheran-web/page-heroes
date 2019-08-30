@@ -4,12 +4,6 @@
 		<div class="row">
 			<section class="col-sm-12">
 				<h1 class="section-title">Image Resizer</h1>
-
-				<h2>Upload an Image</h2>
-
-				<label for="upload-select">Select a file to upload</label>
-                <input type="file" class="cropit-image-input" id="upload-select" @change="handleFileChange" />
-
 			</section>
 			<section class="col-sm-12">
 				<h2>Choose a Style of Image</h2>
@@ -20,7 +14,15 @@
 				</select>
 
 			</section>
-			<section class="col-sm-12">
+			<section class="col-sm-12" v-if="this.style">
+				<h2>Upload an Image</h2>
+
+				<label for="upload-select">Select a file to upload</label>
+                <input type="file" class="cropit-image-input" id="upload-select" @change="handleFileChange" />
+
+			</section>
+			
+			<section class="col-sm-12" v-if="this.oldImage">
 				<h2>Make Edits</h2>
 
 				<Cropper
@@ -34,7 +36,7 @@
 				></Cropper>
 
 			</section>
-			<section class="col-sm-12">
+			<section class="col-sm-12" v-if="this.newImage">
 				<h2>Preview</h2>
 
 				<ShortItem :img="this.newImage" v-if="this.style == 'profile'" />
@@ -102,7 +104,7 @@
 <style scoped>
 
 	.cropper {
-		max-width: 400px;
+		max-width: 40%;
 		margin: auto;
 	}
 
