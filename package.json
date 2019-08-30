@@ -15,7 +15,9 @@
     "parcel-bundler": "^1.12.3",
     "pica": "^5.1.0",
     "vue": "^2.6.10",
-    "vue-hot-reload-api": "^2.3.3"
+    "vue-advanced-cropper": "^0.12.2",
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-image-crop-upload": "^2.5.0"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
