@@ -24,8 +24,9 @@
 				<h2>Make Edits</h2>
 
 				<Cropper
+					ref="cropImg"
 					classname="cropper"
-					:src="this.img"
+					:src="this.oldImage"
 					:stencilProps="{
 						aspectRatio: 2/3,
 					}"
@@ -39,8 +40,8 @@
 				<ShortItem :img="this.image" v-if="this.style == 'profile'" />
 
 			</section>
-			<section v-if="this.image" class="col-sm-12">
-				<a :href="this.image" download="image.jpg" class="btn green btn-large">Download</a>
+			<section v-if="this.newImage" class="col-sm-12">
+				<a :href="this.newImage" download="image.jpg" class="btn green btn-large">Download</a>
 			</section>
 		</div>
 	</main>
@@ -52,19 +53,14 @@
 	import Vue from "vue";
 	import { Cropper } from 'vue-advanced-cropper';
 	import ShortItem from './ShortItem.vue';
+	const Pica = require('pica')();
 
 	export default {
 		data(){
 			return {
-				img: '',
+				oldImage: '',
 				style: '',
-				image: '',
-				coordinates: {
-					width: 0,
-					height: 0,
-					left: 0,
-					top: 0
-				},
+				newImage: ''
 			}
 		},
 		components: {
@@ -75,13 +71,27 @@
 			handleFileChange(e){
 				var reader = new FileReader();
 				reader.onload = (e) => {
-					this.img = e.target.result;
+					this.oldImage = e.target.result;
 				}
 				reader.readAsDataURL(e.target.files[0]);
 			},
 			cropChange({coordinates, canvas}) {
-				this.coordinates = coordinates;
-				this.image = canvas.toDataURL();
+
+				// get current Vue object
+				var $this = this;
+
+				// make a new canvas object to throw image into
+				var zoomedCanvas = document.createElement('canvas');
+				zoomedCanvas.width = 200;
+				zoomedCanvas.height = 300;
+				
+				// use Pica library to resize image down, then assign to Vue data
+				Pica.resize(canvas, zoomedCanvas)
+					.then(function(result){
+						console.log(result);
+						$this.newImage = result.toDataURL();
+					});
+
 			},
 		}
 	}
