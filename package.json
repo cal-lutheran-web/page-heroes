@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "browser-sync start --server --watch --directory"
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cropit": "^0.5.1",
-    "pica": "^5.1.0"
+    "parcel-bundler": "^1.12.3",
+    "pica": "^5.1.0",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "vue-template-compiler": "^2.6.10"
   }
 }
