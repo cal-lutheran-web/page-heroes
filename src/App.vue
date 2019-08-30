@@ -37,7 +37,7 @@
 			<section class="col-sm-12">
 				<h2>Preview</h2>
 
-				<ShortItem :img="this.image" v-if="this.style == 'profile'" />
+				<ShortItem :img="this.newImage" v-if="this.style == 'profile'" />
 
 			</section>
 			<section v-if="this.newImage" class="col-sm-12">
