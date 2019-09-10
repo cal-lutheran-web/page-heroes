@@ -29,6 +29,7 @@
           :src="this.oldImage"
           :stencilProps="{ aspectRatio: this.aspectRatio }"
           @change="cropChange"
+          :key="this.refresh"
         ></Cropper>
       </section>
       <section class="col-sm-12" v-if="this.newImage">
@@ -42,7 +43,7 @@
         </div>
       </section>
       <section v-if="this.newImage" class="col-sm-12">
-        <a :href="this.newImage" download="image.jpg" class="btn green btn-large">Download</a>
+        <a :href="this.newImage" :download="this.fileName" class="btn green btn-large">Download</a>
       </section>
     </div>
   </main>
@@ -61,10 +62,12 @@ export default {
       oldImage: "",
       style: "",
       newImage: "",
+      fileName: "",
       imageTypes: ["profile", "featured-col"],
       aspectRatio: "",
       canvasWidth: "",
-      canvasHeight: ""
+      canvasHeight: "",
+      refresh: 0
     };
   },
   components: {
@@ -74,7 +77,9 @@ export default {
   },
   methods: {
     handleFileChange(e) {
+      this.fileName = e.target.files[0].name;
       var reader = new FileReader();
+
       reader.onload = e => {
         this.oldImage = e.target.result;
       };
@@ -99,16 +104,18 @@ export default {
   watch: {
     style(data) {
       if (data == "profile") {
-        this.canvasWidth = 200;
-        this.canvasHeight = 300;
-        this.aspectRatio = 2 / 3;
+        Vue.set(this, "canvasWidth", 200);
+        Vue.set(this, "canvasHeight", 300);
+        Vue.set(this, "aspectRatio", 2 / 3);
       }
 
       if (data == "featured-col") {
-        this.canvasWidth = 556;
-        this.canvasHeight = 315;
-        this.aspectRatio = 16 / 9;
+        Vue.set(this, "canvasWidth", 556);
+        Vue.set(this, "canvasHeight", 312);
+        Vue.set(this, "aspectRatio", 16 / 9);
       }
+
+      this.resfresh = 1;
     }
   }
 };
@@ -119,5 +126,8 @@ export default {
 .cropper {
   max-width: 40%;
   margin: auto;
+}
+main {
+  margin-bottom: 8rem;
 }
 </style>
