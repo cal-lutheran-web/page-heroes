@@ -100,8 +100,6 @@ export default {
           return Pica.toBlob(result, "image/jpeg", 0.9);
         })
         .then(function(blob) {
-          console.log(blob);
-
           let newFile = new FileReader();
           newFile.readAsDataURL(blob);
 
