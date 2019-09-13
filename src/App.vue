@@ -95,10 +95,20 @@ export default {
       zoomedCanvas.height = $this.canvasHeight;
 
       // use Pica library to resize image down, then assign to Vue data
-      Pica.resize(canvas, zoomedCanvas).then(function(result) {
-        console.log(result);
-        $this.newImage = result.toDataURL();
-      });
+      Pica.resize(canvas, zoomedCanvas)
+        .then(function(result) {
+          return Pica.toBlob(result, "image/jpeg", 0.9);
+        })
+        .then(function(blob) {
+          console.log(blob);
+
+          let newFile = new FileReader();
+          newFile.readAsDataURL(blob);
+
+          newFile.onload = function() {
+            $this.newImage = newFile.result;
+          };
+        });
     }
   },
   watch: {
