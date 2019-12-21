@@ -1,6 +1,6 @@
-# Image Resize Tool
+# Page Hero Tool
 
-Helps web site editors resize their images to pre-approved sizes before upload into OUCampus.
+Helps web site editors crop and resize page hero images to the proper sizes.
 
 ## Usage
 
